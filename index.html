@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgroMagnetix  </title>
+    <title>AgroMagnetix</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
@@ -17,6 +17,15 @@
                         neonGreen: '#39FF14',
                         neonBlue: '#00F0FF',
                         gold: '#D3A029'
+                    },
+                    animation: {
+                        'slow-zoom': 'zoom 20s infinite alternate',
+                    },
+                    keyframes: {
+                        zoom: {
+                            '0%': { transform: 'scale(1)' },
+                            '100%': { transform: 'scale(1.1)' },
+                        }
                     }
                 }
             }
@@ -36,24 +45,33 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 30px -10px rgba(57, 255, 20, 0.3);
         }
-        .hero-pattern {
-            background-image: radial-gradient(rgba(57, 255, 20, 0.1) 1px, transparent 1px);
-            background-size: 30px 30px;
+        /* Grid tecnológico sobre la imagen */
+        .tech-grid {
+            background-image: linear-gradient(rgba(57, 255, 20, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(57, 255, 20, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.3;
         }
     </style>
 </head>
-<body class="antialiased hero-pattern">
+<body class="antialiased">
 
-    <nav class="fixed w-full z-50 bg-dark/90 backdrop-blur-md border-b border-white/10">
+    <!-- NAV (HÍBRIDO: LOGO + TEXTO NEÓN) -->
+    <nav class="fixed w-full z-50 bg-dark/90 backdrop-blur-md border-b border-white/10 transition-all duration-300" id="navbar">
         <div class="container mx-auto px-6 py-3 flex justify-between items-center">
             
+            <!-- LOGO MIXTO -->
             <a href="#" class="flex items-center gap-3 group">
-                <img src="assets/image.png" alt="Logo Icon" class="h-10 w-auto rounded-full border border-white/10 group-hover:border-neonGreen transition shadow-[0_0_15px_rgba(57,255,20,0.2)]">
-                                <div class="text-xl md:text-2xl font-black tracking-tighter italic">
+                <!-- Tu Imagen de Logo -->
+                <img src="./assets/image.png" alt="Logo Icon" class="h-10 w-auto rounded-full border border-white/10 group-hover:border-neonGreen transition shadow-[0_0_15px_rgba(57,255,20,0.2)]">
+                
+                <!-- Texto Neón -->
+                <div class="text-xl md:text-2xl font-black tracking-tighter italic hidden sm:block">
                     <span class="text-neonGreen glow-text">AGRO</span><span class="text-white">MAGNETIX</span>
                 </div>
             </a>
             
+            <!-- MENÚ -->
             <div class="hidden md:flex space-x-8 text-sm font-bold items-center">
                 <a href="#tecnologia" class="hover:text-neonGreen transition">TECNOLOGÍA</a>
                 <a href="#resultados" class="hover:text-neonGreen transition">RESULTADOS</a>
@@ -61,43 +79,73 @@
                 <a href="#roadmap" class="hover:text-neonGreen transition">FUTURO</a>
             </div>
             
-            <a href="mailto:gabrielmairenagranera@gmail.com" class="hidden md:block bg-neonGreen text-dark font-bold py-2 px-6 rounded-lg hover:bg-white transition shadow-[0_0_15px_rgba(57,255,20,0.4)]">
+            <a href="mailto:info@agromagnetix.com" class="hidden md:block bg-neonGreen text-dark font-bold py-2 px-6 rounded-lg hover:bg-white transition shadow-[0_0_15px_rgba(57,255,20,0.4)]">
                 Contacto
             </a>
         </div>
     </nav>
 
-    <section class="min-h-screen flex items-center justify-center pt-20 px-4 relative overflow-hidden">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-neonGreen/20 rounded-full blur-[100px] -z-10"></div>
+    <!-- HERO SECTION (IMAGEN DE MAÍZ + TRANSICIÓN) -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
         
-        <div class="text-center max-w-4xl mx-auto">
-            <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight tracking-tight">
+        <!-- 1. Imagen de Fondo (Maíz) con Zoom Lento -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1551754655-cd27e38d2076?q=80&w=2070&auto=format&fit=crop" 
+                 alt="Campo de Maíz" 
+                 class="w-full h-full object-cover animate-slow-zoom opacity-60">
+        </div>
+
+        <!-- 2. Overlay Oscuro (Para que se lea el texto) -->
+        <div class="absolute inset-0 bg-black/50 z-0"></div>
+
+        <!-- 3. Grid Tecnológico (El toque AgroMagnetix) -->
+        <div class="absolute inset-0 tech-grid z-0"></div>
+
+        <!-- 4. Gradiente de Transición (Lo que pidió el feedback) -->
+        <!-- Esto hace que la imagen se funda con el fondo negro de abajo -->
+        <div class="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-[#0F172A] to-transparent z-10"></div>
+
+        <!-- Contenido Central -->
+        <div class="relative z-20 text-center max-w-5xl px-4 mt-16">
+            <div class="inline-block border border-neonGreen text-neonGreen px-4 py-1 rounded-full text-xs font-bold mb-6 tracking-[0.2em] uppercase bg-black/50 backdrop-blur-sm">
+                Babson Challenge 2025
+            </div>
+            
+            <h1 class="text-5xl md:text-8xl font-black mb-6 leading-tight tracking-tight drop-shadow-2xl">
                 CULTIVANDO EL FUTURO<br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-neonGreen to-neonBlue">CON CIENCIA</span>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-neonGreen to-neonBlue filter drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]">CON CIENCIA</span>
             </h1>
-            <p class="text-gray-400 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
-                Despertamos el potencial genético de las semillas mediante campos electromagnéticos precisos. <strong class="text-white">Cosechas 20 días antes, 0% agroquímicos.</strong>
+            
+            <p class="text-gray-200 text-lg md:text-2xl mb-10 max-w-3xl mx-auto leading-relaxed drop-shadow-md font-medium">
+                Fusionamos la naturaleza con electromagnetismo de precisión. <br>
+                <span class="text-neonGreen font-bold">Cosechas 20 días antes. 0% Agroquímicos.</span>
             </p>
+            
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#tecnologia" class="bg-neonGreen text-dark font-bold py-4 px-8 rounded-lg hover:scale-105 transition shadow-[0_0_20px_rgba(57,255,20,0.4)]">
+                <a href="#tecnologia" class="bg-neonGreen text-dark font-bold py-4 px-8 rounded-lg hover:scale-105 transition shadow-[0_0_20px_rgba(57,255,20,0.6)] border-2 border-neonGreen">
                     Ver Tecnología
                 </a>
-                <a href="#ods" class="border border-white/20 text-white font-bold py-4 px-8 rounded-lg hover:bg-white/10 transition">
+                <a href="#ods" class="bg-white/10 backdrop-blur-md border border-white text-white font-bold py-4 px-8 rounded-lg hover:bg-white hover:text-dark transition">
                     Nuestro Impacto
                 </a>
             </div>
         </div>
+
+
     </section>
 
-    <section id="tecnologia" class="py-20 container mx-auto px-6">
+    <!-- FEATURES GRID (TECNOLOGÍA) -->
+    <section id="tecnologia" class="py-24 container mx-auto px-6 relative z-20">
         <div class="grid md:grid-cols-3 gap-6">
+            <!-- Card 1 -->
             <div class="glass-card p-8 rounded-2xl">
                 <div class="text-neonGreen mb-4">
                     <span class="material-symbols-outlined text-5xl">bolt</span>
                 </div>
-                <h3 class="text-xl font-bold mb-2">Activador </h3>
-                <p class="text-gray-400 text-sm">Dispositivo IoT "On-Grid" de bajo costo. Automatiza el ciclo de 15 días de exposición magnética.</p>
+                <h3 class="text-xl font-bold mb-2">Activador CINTLI</h3>
+                <p class="text-gray-400 text-sm">Dispositivo IoT "Off-Grid" de bajo costo (₡2.500). Automatiza el ciclo de 15 días de exposición magnética (11-14 µT).</p>
             </div>
+            <!-- Card 2 -->
             <div class="glass-card p-8 rounded-2xl border-neonBlue/30">
                 <div class="text-neonBlue mb-4">
                     <span class="material-symbols-outlined text-5xl">science</span>
@@ -105,6 +153,7 @@
                 <h3 class="text-xl font-bold mb-2">Bio-Activación</h3>
                 <p class="text-gray-400 text-sm">Estímulo de magnetosomas celulares que "despierta" genes de resistencia y crecimiento sin alterar el ADN.</p>
             </div>
+            <!-- Card 3 -->
             <div class="glass-card p-8 rounded-2xl border-gold/30">
                 <div class="text-gold mb-4">
                     <span class="material-symbols-outlined text-5xl">eco</span>
@@ -115,11 +164,14 @@
         </div>
     </section>
 
-    <section class="py-24 bg-dark/50 relative overflow-hidden">
+    <!-- DATA SECTION (RESULTADOS COMPROBADOS) -->
+    <section id="resultados" class="py-24 bg-dark/50 relative overflow-hidden">
+        <!-- Decoración de fondo sutil -->
         <div class="absolute top-0 right-0 w-1/2 h-full bg-neonGreen/5 blur-[120px] -z-10"></div>
 
         <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-16">
             
+            <!-- COLUMNA IZQUIERDA: Texto Explicativo -->
             <div class="md:w-1/2">
                 <div class="inline-block px-3 py-1 mb-4 border border-neonGreen/30 rounded-full bg-neonGreen/5">
                     <span class="text-neonGreen text-xs font-bold tracking-widest uppercase">Validación Científica</span>
@@ -145,9 +197,10 @@
                 </ul>
             </div>
 
+            <!-- COLUMNA DERECHA: EL DASHBOARD VISUAL -->
             <div class="md:w-1/2 w-full">
                 <div class="relative w-full aspect-video bg-[#0B1120] rounded-2xl overflow-hidden border border-gray-700 shadow-2xl flex flex-col group hover:border-neonGreen/50 transition duration-500">
-                    
+                    <!-- Header del Dashboard -->
                     <div class="bg-gray-800/50 p-4 border-b border-gray-700 flex justify-between items-center">
                         <div class="flex items-center gap-2">
                             <span class="material-symbols-outlined text-neonGreen animate-pulse">analytics</span>
@@ -159,10 +212,10 @@
                             <div class="w-2 h-2 rounded-full bg-green-500"></div>
                         </div>
                     </div>
-
+                    <!-- Cuerpo del Gráfico -->
                     <div class="p-8 flex flex-col justify-center h-full relative">
                         <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(#334155 1px, transparent 1px), linear-gradient(90deg, #334155 1px, transparent 1px); background-size: 20px 20px;"></div>
-
+                        <!-- Barra 1 -->
                         <div class="mb-8 relative z-10">
                             <div class="flex justify-between text-xs text-gray-400 mb-2 font-mono">
                                 <span>MÉTODO TRADICIONAL</span>
@@ -174,6 +227,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Barra 2 -->
                         <div class="relative z-10">
                             <div class="flex justify-between text-xs text-neonBlue mb-2 font-mono font-bold">
                                 <span>SISTEMA AGROMAGNETIX</span>
@@ -181,11 +235,12 @@
                             </div>
                             <div class="w-full h-4 bg-gray-800 rounded-full overflow-hidden border border-gray-700 relative shadow-[0_0_30px_rgba(0,240,255,0.2)]">
                                 <div class="absolute h-full bg-gradient-to-r from-neonBlue to-neonGreen w-[70%] shadow-[0_0_15px_#00F0FF] animate-[grow_2s_ease-out_forwards] flex items-center justify-end px-2">
+                                    <span class="text-[9px] text-black font-bold animate-pulse">⚡ OPTIMIZADO</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    <!-- Footer Stats -->
                     <div class="bg-gray-800/30 border-t border-gray-700 p-4 grid grid-cols-3 gap-px">
                         <div class="text-center border-r border-gray-700">
                             <div class="text-lg font-black text-white">20d</div>
@@ -200,17 +255,13 @@
                             <div class="text-[9px] text-gray-500 tracking-widest uppercase">ROI</div>
                         </div>
                     </div>
-                    
-                    <style>
-                        @keyframes grow { from { width: 0%; } to { width: 70%; } }
-                    </style>
+                    <style>@keyframes grow { from { width: 0%; } to { width: 70%; } }</style>
                 </div>
             </div>
-
         </div>
     </section>
 
-<!-- ODS SECTION EXTENDED -->
+    <!-- ODS SECTION (8 ITEMS) -->
     <section id="ods" class="py-24 container mx-auto px-6">
         <div class="text-center mb-16">
             <div class="inline-block px-3 py-1 mb-4 border border-gold/30 rounded-full bg-gold/5">
@@ -221,8 +272,7 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            
-            <!-- 1. ODS 2: Hambre Cero -->
+            <!-- 1. ODS 2 -->
             <div class="p-6 bg-white/5 rounded-xl border-l-4 border-[#D3A029] hover:bg-white/10 transition group">
                 <div class="flex justify-between items-start mb-4">
                     <h3 class="text-[#D3A029] font-black text-2xl">ODS 2</h3>
@@ -231,7 +281,7 @@
                 <p class="font-bold text-white mb-1">Eficiencia</p>
                 <p class="text-xs text-gray-400">Cosechas 20 días antes.</p>
             </div>
-
+            <!-- 2. ODS 9 -->
             <div class="p-6 bg-white/5 rounded-xl border-l-4 border-[#FD6925] hover:bg-white/10 transition group">
                 <div class="flex justify-between items-start mb-4">
                     <h3 class="text-[#FD6925] font-black text-2xl">ODS 9</h3>
@@ -240,6 +290,7 @@
                 <p class="font-bold text-white mb-1">Tecnología</p>
                 <p class="text-xs text-gray-400">Innovación de bajo costo.</p>
             </div>
+            <!-- 3. ODS 12 -->
             <div class="p-6 bg-white/5 rounded-xl border-l-4 border-[#BF8B2E] hover:bg-white/10 transition group">
                 <div class="flex justify-between items-start mb-4">
                     <h3 class="text-[#BF8B2E] font-black text-2xl">ODS 12</h3>
@@ -248,6 +299,7 @@
                 <p class="font-bold text-white mb-1">Sostenibilidad</p>
                 <p class="text-xs text-gray-400">Cero agroquímicos.</p>
             </div>
+            <!-- 4. ODS 3 -->
             <div class="p-6 bg-white/5 rounded-xl border-l-4 border-[#4C9F38] hover:bg-white/10 transition group">
                 <div class="flex justify-between items-start mb-4">
                     <h3 class="text-[#4C9F38] font-black text-2xl">ODS 3</h3>
@@ -256,22 +308,25 @@
                 <p class="font-bold text-white mb-1">Salud</p>
                 <p class="text-xs text-gray-400">Alimentos libres de tóxicos.</p>
             </div>
+            <!-- 5. ODS 13 -->
             <div class="p-6 bg-white/5 rounded-xl border-l-4 border-[#3F7E44] hover:bg-white/10 transition group">
                 <div class="flex justify-between items-start mb-4">
                     <h3 class="text-[#3F7E44] font-black text-2xl">ODS 13</h3>
                     <span class="material-symbols-outlined text-gray-500 group-hover:text-[#3F7E44] transition">globe</span>
                 </div>
                 <p class="font-bold text-white mb-1">Ecoamigable</p>
-                <p class="text-xs text-gray-400">Herramienta de adaptación climática.</p>
+                <p class="text-xs text-gray-400">Adaptación climática.</p>
             </div>
+            <!-- 6. ODS 10 -->
             <div class="p-6 bg-white/5 rounded-xl border-l-4 border-[#DD1367] hover:bg-white/10 transition group">
                 <div class="flex justify-between items-start mb-4">
                     <h3 class="text-[#DD1367] font-black text-2xl">ODS 10</h3>
                     <span class="material-symbols-outlined text-gray-500 group-hover:text-[#DD1367] transition">location_city</span>
                 </div>
                 <p class="font-bold text-white mb-1">Flexibilidad</p>
-                <p class="text-xs text-gray-400">Fomenta la agricultura urbana.</p>
+                <p class="text-xs text-gray-400">Fomenta agricultura urbana.</p>
             </div>
+            <!-- 7. ODS 8 -->
             <div class="p-6 bg-white/5 rounded-xl border-l-4 border-[#A21942] hover:bg-white/10 transition group">
                 <div class="flex justify-between items-start mb-4">
                     <h3 class="text-[#A21942] font-black text-2xl">ODS 8</h3>
@@ -280,22 +335,25 @@
                 <p class="font-bold text-white mb-1">Automatización</p>
                 <p class="text-xs text-gray-400">Tecnifica y dignifica la labor.</p>
             </div>
+            <!-- 8. ODS 1 -->
             <div class="p-6 bg-white/5 rounded-xl border-l-4 border-[#E5243B] hover:bg-white/10 transition group">
                 <div class="flex justify-between items-start mb-4">
                     <h3 class="text-[#E5243B] font-black text-2xl">ODS 1</h3>
                     <span class="material-symbols-outlined text-gray-500 group-hover:text-[#E5243B] transition">trending_up</span>
                 </div>
                 <p class="font-bold text-white mb-1">Ganancia</p>
-                <p class="text-xs text-gray-400">+30% de ahorro en fertilizantes.</p>
+                <p class="text-xs text-gray-400">+30% ahorro en fertilizantes.</p>
             </div>
-
         </div>
     </section>
 
+    <!-- ROADMAP (ESTRATEGIA) -->
     <section id="roadmap" class="py-24 bg-black/50">
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-3xl font-bold mb-12">Estrategia <span class="text-neonBlue">2028</span></h2>
             <div class="max-w-3xl mx-auto space-y-8 text-left">
+                
+                <!-- 2026 -->
                 <div class="flex gap-6 group">
                     <div class="flex flex-col items-center">
                         <div class="w-4 h-4 bg-neonGreen rounded-full shadow-[0_0_10px_#39FF14]"></div>
@@ -307,6 +365,7 @@
                     </div>
                 </div>
 
+                <!-- 2027 -->
                 <div class="flex gap-6 group">
                     <div class="flex flex-col items-center">
                         <div class="w-4 h-4 bg-neonBlue rounded-full shadow-[0_0_10px_#00F0FF]"></div>
@@ -318,6 +377,7 @@
                     </div>
                 </div>
 
+                <!-- 2028 -->
                 <div class="flex gap-6 group">
                     <div class="flex flex-col items-center">
                         <div class="w-4 h-4 bg-gold rounded-full shadow-[0_0_10px_#D3A029]"></div>
@@ -332,7 +392,9 @@
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer class="py-12 text-center border-t border-white/5">
+        <img src="./assets/image.png" alt="AgroMagnetix Logo" class="h-12 mx-auto mb-6 opacity-50 grayscale hover:grayscale-0 transition">
         <p class="text-gray-600 text-sm">AgroMagnetix © 2025 • Costa Rica</p>
     </footer>
 
